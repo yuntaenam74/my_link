@@ -1,4 +1,28 @@
-"use client"
+"use client";
+
+export const metadata = {
+  title: {
+    default: "MyLink",
+    template: "%s - MyLink",
+  },
+  description: "나만의 모든 링크를 하나의 페이지로 모아보는 서비스",
+  openGraph: {
+    title: "MyLink",
+    description: "나만의 모든 링크를 하나의 페이지로 모아보는 서비스",
+    url: "https://my-link.example.com",
+    siteName: "MyLink",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "MyLink Open Graph Image" }],
+    locale: "ko_KR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MyLink",
+    description: "나만의 모든 링크를 하나의 페이지로 모아보는 서비스",
+    images: ["/og.png"],
+  },
+  robots: { index: true, follow: true },
+};
 
 import { useState } from "react"
 import { doc, updateDoc, increment } from "firebase/firestore"

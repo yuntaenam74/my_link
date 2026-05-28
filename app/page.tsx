@@ -9,7 +9,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog"
 import { AddLinkDialog } from "@/components/add-link-dialog"
-import { ShareNetwork, ArrowUpRight, Trash, CircleNotch, PencilSimple, CheckCircle } from "@phosphor-icons/react"
+import { ShareNetwork, ArrowUpRight, Trash, CircleNotch, PencilSimple, CheckCircle, LinkSimple, Palette, ChartBar } from "@phosphor-icons/react"
 import { useAuth } from "@/hooks/useAuth"
 import { Header } from "@/components/header"
 import { toast } from "sonner"
@@ -178,18 +178,82 @@ export default function Page() {
             <p className="text-sm text-muted-foreground/60 font-semibold">로그인 상태를 확인하는 중...</p>
           </div>
         ) : !user ? (
-          <section className="flex flex-col items-center text-center mt-20 animate-in fade-in slide-in-from-bottom-8 duration-1000">
-            <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight mb-6 leading-tight">
-              나만의 모든 링크를 <br className="hidden sm:block"/>
-              <span className="text-primary">하나의 페이지로.</span>
-            </h1>
-            <p className="text-muted-foreground/80 mb-10 max-w-md text-lg">
-              로그인 이후에 링크를 관리하고 프로필을 설정할 수 있습니다.
-            </p>
-            <Button size="lg" className="h-14 px-8 text-lg font-bold rounded-2xl shadow-xl shadow-primary/20 hover:scale-105 transition-all" onClick={login}>
-              구글로 시작하기
-            </Button>
-          </section>
+          <div className="w-full flex flex-col items-center gap-24 pb-20">
+            {/* Hero Section (기존 유지) */}
+            <section className="flex flex-col items-center text-center mt-20 animate-in fade-in slide-in-from-bottom-8 duration-1000">
+              <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight mb-6 leading-tight">
+                나만의 모든 링크를 <br className="hidden sm:block"/>
+                <span className="text-primary">하나의 페이지로.</span>
+              </h1>
+              <p className="text-muted-foreground/80 mb-10 max-w-md text-lg">
+                로그인 이후에 링크를 관리하고 프로필을 설정할 수 있습니다.
+              </p>
+              <Button size="lg" className="h-14 px-8 text-lg font-bold rounded-2xl shadow-xl shadow-primary/20 hover:scale-105 transition-all" onClick={login}>
+                구글로 시작하기
+              </Button>
+            </section>
+
+            {/* Mockup Section */}
+            <section className="w-full max-w-3xl flex justify-center animate-in fade-in slide-in-from-bottom-12 duration-1000 delay-300">
+              <div className="relative w-full max-w-[300px] sm:max-w-sm rounded-[2.5rem] border-[8px] border-foreground/5 bg-background shadow-2xl overflow-hidden aspect-[9/19] ring-1 ring-foreground/10">
+                {/* Mockup Header */}
+                <div className="bg-primary/5 p-6 flex flex-col items-center border-b border-foreground/5 pt-10">
+                  <div className="h-20 w-20 rounded-full bg-primary/20 mb-4 ring-4 ring-background relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-tr from-primary/40 to-transparent" />
+                  </div>
+                  <div className="h-5 w-28 bg-foreground/20 rounded-md mb-2" />
+                  <div className="h-3 w-40 bg-foreground/10 rounded-md" />
+                </div>
+                {/* Mockup Links */}
+                <div className="p-5 flex flex-col gap-3">
+                  {[1, 2, 3].map((i) => (
+                    <div key={i} className="flex items-center gap-3 p-3 rounded-2xl bg-background border border-foreground/10 shadow-sm hover:border-primary/30 transition-all hover:-translate-y-0.5">
+                      <div className="h-10 w-10 rounded-xl bg-primary/10 shrink-0 flex items-center justify-center">
+                        <LinkSimple size={20} className="text-primary opacity-70" />
+                      </div>
+                      <div className="flex flex-col gap-2 flex-1">
+                        <div className="h-3 w-2/3 bg-foreground/20 rounded-full" />
+                        <div className="h-2 w-1/3 bg-foreground/10 rounded-full" />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
+
+            {/* Features Section */}
+            <section className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-3 gap-6 px-6 animate-in fade-in slide-in-from-bottom-12 duration-1000 delay-500">
+              <div className="flex flex-col items-center text-center p-8 rounded-3xl bg-background/50 backdrop-blur-md ring-1 ring-foreground/5 hover:ring-primary/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] hover:bg-background/80">
+                <div className="h-16 w-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-6 text-primary ring-1 ring-primary/20">
+                  <LinkSimple size={32} weight="duotone" />
+                </div>
+                <h3 className="text-xl font-bold mb-3">단 하나의 링크</h3>
+                <p className="text-muted-foreground/80 leading-relaxed text-sm">
+                  인스타그램, 유튜브, 블로그 등 흩어져 있는 모든 채널을 하나의 프로필 링크로 모아보세요.
+                </p>
+              </div>
+              
+              <div className="flex flex-col items-center text-center p-8 rounded-3xl bg-background/50 backdrop-blur-md ring-1 ring-foreground/5 hover:ring-primary/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] hover:bg-background/80">
+                <div className="h-16 w-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-6 text-primary ring-1 ring-primary/20">
+                  <Palette size={32} weight="duotone" />
+                </div>
+                <h3 className="text-xl font-bold mb-3">간편한 커스터마이징</h3>
+                <p className="text-muted-foreground/80 leading-relaxed text-sm">
+                  별도의 저장 버튼 없이 클릭하고 바로 수정하는 직관적이고 빠른 인라인 편집을 경험하세요.
+                </p>
+              </div>
+
+              <div className="flex flex-col items-center text-center p-8 rounded-3xl bg-background/50 backdrop-blur-md ring-1 ring-foreground/5 hover:ring-primary/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] hover:bg-background/80">
+                <div className="h-16 w-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-6 text-primary ring-1 ring-primary/20">
+                  <ChartBar size={32} weight="duotone" />
+                </div>
+                <h3 className="text-xl font-bold mb-3">클릭 통계</h3>
+                <p className="text-muted-foreground/80 leading-relaxed text-sm">
+                  방문자가 어떤 링크를 얼마나 클릭했는지 조회수를 통해 직관적으로 확인할 수 있습니다.
+                </p>
+              </div>
+            </section>
+          </div>
         ) : (
           <>
             <div className="absolute top-24 right-8 z-10">
